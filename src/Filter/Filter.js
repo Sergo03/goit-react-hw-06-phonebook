@@ -1,6 +1,8 @@
 import React from 'react';
 // import PropsTypes from 'prop-types';
 import style from './Style.module.css'
+import { connect } from 'react-redux'
+import actions from '../redux/Contacts/action'
 
 const Filter = ({ value, onChange }) => {
   return (
@@ -14,6 +16,13 @@ const Filter = ({ value, onChange }) => {
 // Filter.propTypes = {
 //   onChange: PropsTypes.func.isRequired
 // }
+    
+
+const mapDispatchToProps = dispatch => ({
+  onChange:(e)=>dispatch(actions.changeFilter(e.currentTarget.value))
+})
 
 
-export default Filter
+
+
+export default connect(null,mapDispatchToProps)(Filter);

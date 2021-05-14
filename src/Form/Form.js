@@ -4,6 +4,9 @@ import style from './Style.module.css'
 import {connect} from 'react-redux'
 import action from '../redux/Contacts/action'
 
+
+
+
 class Form extends Component{
     state = {
       name: '',
@@ -11,17 +14,19 @@ class Form extends Component{
     }
     
   handleinput = (e) => {
-   
     this.setState({ [e.currentTarget.name]: e.currentTarget.value })
   };
       
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onSubmit(this.state)
+    const isIncludeName = !!this.props.value.find(contact => contact.name === this.state.name)
+    isIncludeName && alert(`${this.state.name} is already in contacts`)
+    !isIncludeName && this.props.onSubmit(this.state)
  
+    
     this.reset();
-   
   }
+ 
   
   reset = () => {
     this.setState({ name: '', number: '' })
@@ -70,10 +75,12 @@ class Form extends Component{
 //   onSubmit: PropsTypes.func.isRequired,
 // }
 
+const mapStateToProps = ({ contacts: { items } }) => ({
+  value:items
+}) 
+
 const mapDispatchToProps = dispatch => ({
-  onSubmit:(data)=>dispatch(action.addContact(data))
+  onSubmit: (data) => dispatch(action.addContact(data)),
 })
 
-
-
-export default connect(null,mapDispatchToProps)(Form);
+export default connect(mapStateToProps,mapDispatchToProps)(Form);
