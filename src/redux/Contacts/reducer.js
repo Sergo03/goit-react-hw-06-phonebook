@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 // import types from './types';
 import { createReducer } from '@reduxjs/toolkit';
-import actions from './action'
+import * as actions from './action'
 
 const items = createReducer([], {
     [actions.addContact]: (state, {payload}) => [...state, payload],
@@ -22,7 +22,7 @@ const items = createReducer([], {
 // }
 
 const filter = createReducer('', {
-    [actions.changeFilter]:(state,{payload})=>payload,
+    [actions.changeFilter]:(_,{payload})=>payload,
 })
 
 

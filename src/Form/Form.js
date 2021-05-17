@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-// import PropsTypes from 'prop-types';
+import PropsTypes from 'prop-types';
 import style from './Style.module.css'
 import {connect} from 'react-redux'
-import action from '../redux/Contacts/action'
+import * as action from '../redux/Contacts/action'
 
 
 
@@ -71,9 +71,9 @@ class Form extends Component{
 
 }
 
-// Form.propTypes = {
-//   onSubmit: PropsTypes.func.isRequired,
-// }
+Form.propTypes = {
+  onSubmit: PropsTypes.func.isRequired,
+}
 
 const mapStateToProps = ({ contacts: { items } }) => ({
   value:items

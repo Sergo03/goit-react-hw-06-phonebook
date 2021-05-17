@@ -1,7 +1,7 @@
 import React from 'react';
-// import PropsTypes from 'prop-types';
+import PropsTypes from 'prop-types';
 import { connect } from 'react-redux'
-import actions from '../redux/Contacts/action'
+import * as actions from '../redux/Contacts/action'
 import style from './Style.module.css'
 
 const Render = ({ value, onDeleteContact }) => {
@@ -15,10 +15,10 @@ const Render = ({ value, onDeleteContact }) => {
     )
 }
 
-// Render.propTypes = {
-//   value: PropsTypes.array.isRequired,
-//   onDeleteContact:PropsTypes.func.isRequired
-// }
+Render.propTypes = {
+  value: PropsTypes.array.isRequired,
+  onDeleteContact:PropsTypes.func.isRequired
+}
 
 
 const getVisibalContacts = (allContacts, filter) => {
